@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# ---
+# input: git pre-commit hook invocation
+# output: stderr soft warnings, always exits 0
+# pos: .sentinel/hooks/pre-commit
+# last_modified: 2026-03-06
+# ---
+
+# Sentinel pre-commit hook -- soft warnings only, never blocks.
+# Always exits 0.
+
+HOOK_DIR="$(cd "$(dirname "$0")" && pwd)"
+# Resolve symlink to actual hook location
+if [ -L "$0" ]; then
+    REAL_PATH="$(readlink "$0")"
+    if [[ "$REAL_PATH" != /* ]]; then
+        REAL_PATH="$HOOK_DIR/$REAL_PATH"
+    fi
+    HOOK_DIR="$(cd "$(dirname "$REAL_PATH")" && pwd)"
+fi
+SENTINEL_SDK_DIR="$(dirname "$HOOK_DIR")"
+
+# Source check libraries
+source "$SENTINEL_SDK_DIR/hooks/lib/check_headers.sh" 2>/dev/null || true
+source "$SENTINEL_SDK_DIR/hooks/lib/check_dir_docs.sh" 2>/dev/null || true
+
+echo "Sentinel: checking documentation consistency..." >&2
+
+check_headers 2>&1 || true
+check_dir_docs 2>&1 || true
+
+# Always exit 0 -- soft warnings only
+exit 0

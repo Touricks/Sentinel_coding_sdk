@@ -1,0 +1,33 @@
+{
+  "description": "Sentinel manifest: SDK-owned paths, scan exclusions, and production packaging rules.",
+  "sentinel_owned": [
+    "tests/",
+    "docs/getting-started.md",
+    "docs/export/README.md",
+    "docs/CLAUDE.md",
+    "docs/review/",
+    "docs/sessions/",
+    "docs/plan/",
+    ".compaction-state.json",
+    ".gitignore"
+  ],
+  "start_scan_excluded": [
+    ".sentinel/",
+    ".claude/"
+  ],
+  "production_exclude": [
+    "tests/",
+    "ARCHITECTURE.md",
+    "CLAUDE.md",
+    "PRD.md",
+    "progress.yaml",
+    "docs/architecture.md",
+    "docs/CLAUDE.md",
+    "docs/review/",
+    "docs/sessions/",
+    "docs/plan/",
+    ".compaction-state.json",
+    ".claude/skills/extract/",
+    ".sentinel/tmp/"
+  ]
+}
