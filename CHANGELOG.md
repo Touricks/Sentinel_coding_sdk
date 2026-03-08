@@ -4,7 +4,7 @@ All notable changes to Sentinel-Coding will be documented in this file.
 
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [0.1.0] - 2026-03-08 (Experimental)
+## [0.1.0] - 2026-03-08 
 
 ### Added
 
@@ -18,6 +18,6 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Getting Started guide (`docs/getting-started.md`)
 
 ### Notes
-
-- This is an experimental release. Skill interfaces and internal APIs may change.
 - Requires Claude Code and Python 3.11+.
+- Recommend install ralph-loop plugin for `/sentinel-loop`
+- Recommend install codex-cli and pay for chatgpt subscription for `/call-codex`
