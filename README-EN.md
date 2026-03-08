@@ -61,9 +61,11 @@ In Claude Code:
 ## Demo
 
 <div align="center">
-<video src="./static/demoVideo.mp4" width="100%" controls>
-  Your browser does not support the video tag.
-</video>
+
+[![Demo Video](https://img.youtube.com/vi/FlvqmCQ1kFM/maxresdefault.jpg)](https://youtu.be/FlvqmCQ1kFM)
+
+*Click the image to watch the demo video*
+
 </div>
 
 ---

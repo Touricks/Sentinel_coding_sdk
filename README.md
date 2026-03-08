@@ -61,9 +61,11 @@ pip install -r requirements.txt
 ## 演示
 
 <div align="center">
-<video src="./static/demoVideo.mp4" width="100%" controls>
-  Your browser does not support the video tag.
-</video>
+
+[![Demo Video](https://img.youtube.com/vi/FlvqmCQ1kFM/maxresdefault.jpg)](https://youtu.be/FlvqmCQ1kFM)
+
+*点击图片观看演示视频*
+
 </div>
 
 ---
