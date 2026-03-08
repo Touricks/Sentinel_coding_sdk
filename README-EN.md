@@ -157,9 +157,7 @@ sentinel-coding/
 
 ---
 
-## Install / Upgrade / Uninstall
-
-### Install
+## Install
 
 ```bash
 git clone https://github.com/your-username/sentinel-coding.git my-project
@@ -168,7 +166,7 @@ pip install -r requirements.txt
 # In Claude Code: /start
 ```
 
-### Hook Behavior (Transparency)
+## Hook Behavior (Transparency)
 
 - `pre-commit`: Runs `check_headers.sh` and `check_dir_docs.sh`. Outputs warnings on stderr. Always exits 0. Never blocks commits. Never modifies files.
 

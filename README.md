@@ -156,9 +156,7 @@ sentinel-coding/
 
 ---
 
-## 安装 / 升级 / 卸载
-
-### 安装
+## 安装
 
 ```bash
 git clone https://github.com/your-username/sentinel-coding.git my-project
@@ -167,7 +165,7 @@ pip install -r requirements.txt
 # 在 Claude Code 中运行: /start
 ```
 
-### Hook 行为（透明度）
+## Hook 行为（透明度）
 
 - `pre-commit`: 运行 `check_headers.sh` 和 `check_dir_docs.sh`。在 stderr 输出警告。始终 exit 0。不阻断提交。不修改文件。
 
