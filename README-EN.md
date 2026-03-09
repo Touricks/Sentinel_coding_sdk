@@ -62,7 +62,7 @@ In Claude Code:
 
 <div align="center">
 
-[![Demo Video](https://img.youtube.com/vi/FlvqmCQ1kFM/maxresdefault.jpg)](https://youtu.be/FlvqmCQ1kFM)
+[![Demo Video](https://img.youtube.com/vi/fgbWpdtwSLU/maxresdefault.jpg)](https://youtu.be/fgbWpdtwSLU)
 
 *Click the image to watch the demo video*
 

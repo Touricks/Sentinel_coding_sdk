@@ -62,7 +62,7 @@ pip install -r requirements.txt
 
 <div align="center">
 
-[![Demo Video](https://img.youtube.com/vi/FlvqmCQ1kFM/maxresdefault.jpg)](https://youtu.be/FlvqmCQ1kFM)
+[![Demo Video](https://img.youtube.com/vi/fgbWpdtwSLU/maxresdefault.jpg)](https://youtu.be/fgbWpdtwSLU)
 
 *点击图片观看演示视频*
 
