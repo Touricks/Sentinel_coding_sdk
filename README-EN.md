@@ -2,7 +2,7 @@
 
 <img src="./static/frontPage.png" alt="Sentinel-Coding Logo" width="75%"/>
 
-AI documentation maintenance SDK for Claude Code projects — combating context degradation in long-term human-AI collaboration
+A scaffolding SDK for reliable, long-running human-AI collaboration on Claude Code 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue.svg)]()

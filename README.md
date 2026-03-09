@@ -2,7 +2,7 @@
 
 <img src="./static/frontPage.png" alt="Sentinel-Coding Logo" width="75%"/>
 
-Claude Code 项目的 AI 文档维护 SDK — 对抗长期人机协作中的上下文退化
+基于 Claude Code 的编程脚手架 SDK，让长期人机协作真正可靠
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue.svg)]()
