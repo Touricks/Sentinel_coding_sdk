@@ -2,7 +2,7 @@
 
 <img src="./static/frontPage.png" alt="Sentinel-Coding Logo" width="75%"/>
 
-A scaffolding SDK for reliable, long-running human-AI collaboration on Claude Code 
+Automatically maintains project docs and tool configs so Claude Code always reads the latest project state
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue.svg)]()
@@ -14,15 +14,47 @@ English | [中文文档](./README.md)
 
 ---
 
-## What Problem Does It Solve
+## TL;DR
 
-In long-running human-AI collaboration, AI context degrades in three ways:
+Sentinel is a set of Claude Code plugins. It maintains an auto-syncing documentation hierarchy in your repository (project-level, directory-level, file-level), so Claude reads the latest code and architecture state every time it starts a new session — not outdated docs or stale context from a previous conversation. It also manages tool usage rules — explicitly constraining which tools Claude should and shouldn't use.
 
-1. **Configuration drift**: `ARCHITECTURE.md` says PostgreSQL, but the code switched to SQLite three sessions ago. The AI keeps generating PostgreSQL queries.
-2. **Tool routing confusion**: 40 available skills, but the AI forgets which ones this project actually uses and starts invoking irrelevant tools.
-3. **Feedback loop breakage**: The developer discovered "never use ORM for bulk inserts", but that lesson lives only in a chat transcript. Next session, the AI generates ORM bulk inserts again.
+Goal: AI understanding of your project on session 50 is as accurate as session 1.
 
-Sentinel addresses these by maintaining three synchronized layers: **document lifecycle**, **tool routing**, and **three-tier review**.
+<div align="center">
+
+[![Demo Video](https://img.youtube.com/vi/fgbWpdtwSLU/maxresdefault.jpg)](https://youtu.be/fgbWpdtwSLU)
+
+*Click the image to watch the demo video*
+
+</div>
+
+---
+
+## What It Does
+
+- **Maintains a three-layer doc hierarchy**: project-level architecture snapshot, directory-level module manifests, file-level descriptions (inputs/outputs/role) — each layer auto-syncs after code changes
+- **Manages tool routing**: scans available skills and MCP tools, generates routing declarations telling Claude what to use and what not to use
+- **Preserves lessons across sessions**: structurally records constraints and pitfalls discovered during development, auto-loaded in the next session to avoid repeating mistakes
+
+---
+
+## Problems You've Probably Hit
+
+If you've used Claude Code on a project for more than a week, you've likely encountered these. They're not about "writing better prompts" — they're about project information falling out of sync with code, leaving the AI working from stale context.
+
+**1. Docs fall behind, AI doesn't notice**
+
+You switched from PostgreSQL to SQLite three weeks ago, but ARCHITECTURE.md was never updated. Claude starts a new session, reads the old doc, and writes PostgreSQL-style code — coherent, reasonable, and completely wrong. You don't find out until tests fail.
+
+**2. Too many tools, AI picks the wrong one**
+
+Your project has dozens of skills and MCP tools with no explicit constraints on which ones apply. Claude picks a tool with similar functionality but the wrong data scope, gets an empty result, and concludes "the data doesn't exist" — the reasoning is flawless, it just asked the wrong tool.
+
+**3. Lessons from last session don't carry over**
+
+Last session you discovered "bulk inserts can't use ORM, use raw SQL." Claude fixed it on the spot. Next session, same scenario, Claude generates ORM bulk inserts again — because that discovery only lived in the previous chat history, never written to any persistent doc.
+
+Sentinel turns these from "hope someone remembers to update the docs" into "the system handles it automatically" — through auto-syncing docs, constraining tool routing, and structurally preserving lessons learned.
 
 ---
 
@@ -31,12 +63,12 @@ Sentinel addresses these by maintaining three synchronized layers: **document li
 **Good fit**:
 - Developers using Claude Code for multi-session projects
 - Projects large enough that the AI starts "forgetting" earlier decisions
-- Teams wanting AI-generated documentation to stay in sync with code
+- Want project docs to auto-update with code changes instead of manual maintenance
 
 **Not a good fit**:
-- One-off scripts or throwaway projects
+- Short-lived scripts or throwaway projects
 - Projects not using Claude Code
-- Teams requiring real-time multi-user collaboration (current design targets single-developer workflows)
+- Teams requiring real-time multi-user collaboration (current design targets solo developer workflows)
 
 ---
 
@@ -55,18 +87,6 @@ In Claude Code:
 /routing            # Scans available tools → generates tool routing report (you approve)
 /boundary           # Based on your approval → generates tool boundary declarations
 ```
-
----
-
-## Demo
-
-<div align="center">
-
-[![Demo Video](https://img.youtube.com/vi/fgbWpdtwSLU/maxresdefault.jpg)](https://youtu.be/fgbWpdtwSLU)
-
-*Click the image to watch the demo video*
-
-</div>
 
 ---
 

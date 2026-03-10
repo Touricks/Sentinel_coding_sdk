@@ -2,7 +2,7 @@
 
 <img src="./static/frontPage.png" alt="Sentinel-Coding Logo" width="75%"/>
 
-基于 Claude Code 的编程脚手架 SDK，让长期人机协作真正可靠
+自动维护项目文档和工具配置，让 Claude Code 在长期项目里始终读到最新的项目状态
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue.svg)]()
@@ -14,29 +14,61 @@
 
 ---
 
-## 它解决什么问题
+## TL;DR
 
-长期的人机协作项目中，AI 的上下文会以三种方式退化：
+Sentinel 是一套 Claude Code 插件。它在你的代码仓库里维护一套自动同步的项目文档（项目级、目录级、文件级），让 Claude 每次开新 session 时读到的都是最新代码与架构状态，而不是过时的文档或上次会话留下的上下文。它同时管理工具使用规则——明确约束 Claude 该用哪些工具、不该碰哪些工具。
 
-1. **配置漂移**: `ARCHITECTURE.md` 写着 PostgreSQL，但三个 session 前代码已经切换到 SQLite。AI 继续生成 PostgreSQL 查询。
-2. **工具路由混乱**: 40 个可用 skill，AI 忘记了哪些是本项目在用的，开始调用不相关的工具。
-3. **反馈回路断裂**: 开发者发现"批量插入不要用 ORM"，但这个教训只活在聊天记录里。下一个 session，AI 又生成了 ORM 批量插入。
+目标：AI 在第 50 个 session 时，对项目的理解和第 1 个 session 一样准确。
 
-Sentinel 通过维护三个同步层来解决这些问题：**文档生命周期**、**工具路由**和**三层审查**。
+<div align="center">
+
+[![Demo Video](https://img.youtube.com/vi/fgbWpdtwSLU/maxresdefault.jpg)](https://youtu.be/fgbWpdtwSLU)
+
+*点击图片观看演示视频*
+
+</div>
+
+---
+
+## 它具体在做什么
+
+- **维护三层项目文档**：项目级架构快照、目录级模块清单、文件级说明（输入/输出/职责）—— 每一层都会在代码变更后自动同步
+- **管理工具路由**：扫描项目可用的 skill 和 MCP 工具，生成路由声明，告诉 Claude 当前项目该用什么、不该用什么
+- **保存跨 session（会话） 的经验教训**：把开发过程中发现的约束和踩过的坑结构化记录下来，下个 session 自动加载，避免重复犯错
+
+---
+
+## 你可能遇到过这些问题
+
+如果用 Claude Code 做过超过一周的项目，下面这些情况你大概率遇到过。它们的共同点不是"prompt 写得不够好"，而是项目信息没有跟着代码一起更新，AI 读到了过时的上下文。
+
+**1. 文档与代码脱节，AI 毫不知情**
+
+你三周前把数据库从 PostgreSQL 切到了 SQLite，但 ARCHITECTURE.md 没更新。Claude 开新 session，读到旧文档，照着 PostgreSQL 的方式写代码——而且写得头头是道，看起来完全没问题。直到你跑测试才发现不对。
+
+**2. 工具太多了，AI 选错了**
+
+项目里装了几十个 skill 和 MCP 工具，但没有明确约束哪些是当前项目在用的。Claude 选了一个功能相近但数据范围不对的工具，拿到了空结果，然后得出"数据不存在"的结论——推理过程没有任何错误，只是问错了工具。
+
+**3. 踩过的坑无法跨会话继承**
+
+上个 session 里你发现"批量插入不能用 ORM，要用原生 SQL"，Claude 当场改好了。下个 session，同样的场景，Claude 又生成了 ORM 批量插入——因为那个发现只活在上次的聊天记录里，没有被写进任何持久化的文档。
+
+Sentinel 通过自动同步文档、约束工具路由、结构化保存经验，把这三类问题从"靠人记得去维护"变成"系统自动处理"。
 
 ---
 
 ## 谁适合用 / 谁不适合
 
-**适合**:
+**适合**：
 - 使用 Claude Code 进行多 session 项目开发的开发者
 - 项目规模已大到 AI 开始"忘记"之前的决策
-- 希望 AI 生成的文档保持与代码同步
+- 希望项目文档能跟着代码自动更新，而不是靠人手动维护
 
-**不适合**:
-- 一次性脚本或 throwaway 项目
+**不适合**：
+- 短期脚本或用完即弃的项目
 - 不使用 Claude Code 的项目
-- 需要多人实时协作的团队（当前设计面向单开发者工作流）
+- 需要多人实时协作的团队（当前设计主要面向独立开发者工作流）
 
 ---
 
@@ -55,18 +87,6 @@ pip install -r requirements.txt
 /routing            # 扫描可用工具 → 生成工具路由报告 (你审批)
 /boundary           # 根据审批结果 → 生成工具边界声明
 ```
-
----
-
-## 演示
-
-<div align="center">
-
-[![Demo Video](https://img.youtube.com/vi/fgbWpdtwSLU/maxresdefault.jpg)](https://youtu.be/fgbWpdtwSLU)
-
-*点击图片观看演示视频*
-
-</div>
 
 ---
 
