@@ -106,6 +106,7 @@ Three pillars:
 | `/progress` | Generate a structured progress.yaml entry with typed Candidates |
 | `/export` | Compliance lint + format rendering for submission-ready documents |
 | `/call-codex` | Invoke Codex CLI from within Claude Code for a second opinion |
+| `/submit-issue` | Submit bug reports or feature requests to GitHub directly from Claude Code |
 
 ---
 
@@ -113,14 +114,15 @@ Three pillars:
 
 ```
 sentinel-coding/
-├── .claude/skills/            # 7 slash commands (human-invoked)
+├── .claude/skills/            # 8 slash commands (human-invoked)
 │   ├── start/                 # Project bootstrap
 │   ├── routing/               # Tool scanning
 │   ├── boundary/              # Boundary generation
 │   ├── sentinel-loop/         # Iterative development
 │   ├── progress/              # Session logging
 │   ├── export/                # Document export
-│   └── call-codex/            # Codex integration
+│   ├── call-codex/            # Codex integration
+│   └── submit-issue/          # Issue submission
 ├── .sentinel/                 # SDK runtime (hidden directory)
 │   ├── chain_trigger/         # Auto-sync pipeline (prechecks → cross-review → self-review)
 │   ├── compaction/            # Knowledge promotion (progress.yaml → CLAUDE.md)
@@ -151,6 +153,7 @@ sentinel-coding/
 - Requires Python 3.11+ (for `StrEnum`, type union syntax, etc.)
 - Hooks are soft warnings only — they alert but never block commits
 - `/call-codex` requires separate Codex CLI installation
+- `/submit-issue` requires GitHub CLI installed and authenticated (`gh auth login`)
 - `/sentinel-loop` requires the Ralph Loop plugin
 - Designed for single-developer workflows; no multi-user conflict resolution
 - Current version (v0.1.0) is experimental; interfaces may change

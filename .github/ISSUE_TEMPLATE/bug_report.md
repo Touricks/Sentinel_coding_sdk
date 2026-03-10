@@ -39,5 +39,6 @@ Which skill was active when the bug occurred?
 - [ ] /progress
 - [ ] /export
 - [ ] /call-codex
+- [ ] /submit-issue
 - [ ] Hooks / chain-triggers
 - [ ] Other

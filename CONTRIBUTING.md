@@ -8,6 +8,7 @@ Thank you for your interest in contributing!
 - Git
 - [Claude Code](https://claude.ai/code)
 - (Optional) [Codex CLI](https://github.com/openai/codex) for `/call-codex`
+- (Optional) [GitHub CLI](https://cli.github.com/) for `/submit-issue`
 
 ## Ways to Contribute
 
@@ -61,7 +62,7 @@ To add a new check, follow the existing pattern: each check function receives `(
 
 ## Reporting Issues
 
-Use the [bug report template](.github/ISSUE_TEMPLATE/bug_report.md) for bugs and the [feature request template](.github/ISSUE_TEMPLATE/feature_request.md) for enhancements.
+Use the [bug report template](.github/ISSUE_TEMPLATE/bug_report.md) for bugs and the [feature request template](.github/ISSUE_TEMPLATE/feature_request.md) for enhancements. If you are using Sentinel in Claude Code, you can also run `/submit-issue` to file an issue directly from your development session.
 
 ## License
 

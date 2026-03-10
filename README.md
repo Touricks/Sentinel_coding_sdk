@@ -106,6 +106,7 @@ pip install -r requirements.txt
 | `/progress` | 生成结构化 progress.yaml 条目，含类型化 Candidate |
 | `/export` | 合规检查 + 格式渲染，输出可提交的文档 |
 | `/call-codex` | 从 Claude Code 中调用 Codex CLI 获取第二意见 |
+| `/submit-issue` | 直接从 Claude Code 提交 Bug 报告或功能请求到 GitHub |
 
 ---
 
@@ -113,14 +114,15 @@ pip install -r requirements.txt
 
 ```
 sentinel-coding/
-├── .claude/skills/            # 7 个 slash 命令 (人类调用)
+├── .claude/skills/            # 8 个 slash 命令 (人类调用)
 │   ├── start/                 # 项目启动
 │   ├── routing/               # 工具扫描
 │   ├── boundary/              # 边界生成
 │   ├── sentinel-loop/         # 迭代开发
 │   ├── progress/              # Session 日志
 │   ├── export/                # 文档导出
-│   └── call-codex/            # Codex 集成
+│   ├── call-codex/            # Codex 集成
+│   └── submit-issue/          # Issue 提交
 ├── .sentinel/                 # SDK 运行时 (隐藏目录)
 │   ├── chain_trigger/         # 自动同步管线 (预检 → 交叉审查 → 自审)
 │   ├── compaction/            # 知识晋升 (progress.yaml → CLAUDE.md)
@@ -151,6 +153,7 @@ sentinel-coding/
 - 需要 Python 3.11+（用于 `StrEnum`、类型联合语法等）
 - Hook 只是软警告 — 提醒但不阻断提交
 - `/call-codex` 需要单独安装 Codex CLI
+- `/submit-issue` 需要安装并认证 GitHub CLI（`gh auth login`）
 - `/sentinel-loop` 需要安装 Ralph Loop 插件
 - 设计面向单开发者工作流，不含多人冲突解决机制
 

@@ -7,6 +7,7 @@
 - Claude Code
 - (Optional) [Codex CLI](https://github.com/openai/codex) for Tier 2 cross-LLM review
 - (Optional) Ralph Loop plugin for iterative development — `claude plugin install ralph-loop`
+- (Optional) [GitHub CLI](https://cli.github.com/) for `/submit-issue` — install then run `gh auth login`
 
 ## Quick Start
 
@@ -179,6 +180,10 @@ PYTHONPATH=.sentinel python .sentinel/compaction/compact.py
 | `file-header.template.md` | YAML front matter examples |
 | `progress-yaml.template.md` | progress.yaml intake funnel format |
 | `review-report.template.md` | Review report structure |
+
+## Reporting Issues
+
+If you encounter a bug or want to request a feature while using Sentinel in Claude Code, run `/submit-issue`. The skill auto-gathers your environment info (OS, Python version, Sentinel version), walks you through describing the issue, previews the formatted GitHub Issue, and submits it via `gh` CLI. Requires `gh` installed and authenticated (`gh auth login`).
 
 ## Key Principles
 

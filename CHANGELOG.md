@@ -8,7 +8,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- 7 slash command skills: `/start`, `/routing`, `/boundary`, `/sentinel-loop`, `/progress`, `/export`, `/call-codex`
+- 8 slash command skills: `/start`, `/routing`, `/boundary`, `/sentinel-loop`, `/progress`, `/export`, `/call-codex`, `/submit-issue`
 - Chain-trigger pipeline for automatic YAML header and directory manifest synchronization
 - Compaction engine for promoting session discoveries to CLAUDE.md and ARCHITECTURE.md
 - Compliance lint engine detecting 4 types of AI writing patterns
