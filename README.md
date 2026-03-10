@@ -111,7 +111,7 @@ pip install -r requirements.txt
 
 1. **文档生命周期**: `/start` 启动 → chain-trigger 自动同步 → `/progress` 记录发现 → compaction 晋升至 `CLAUDE.md`
 2. **工具路由**: `/routing` 清点工具 → 人类审批 → `/boundary` 生成声明 → 每个 session 自动加载
-3. **三层审查**: Tier 1 确定性预检 → Tier 2 跨 LLM 审查（Codex） → Tier 3 自审回退
+3. **三层审查**: Tier 1 确定性预检 → Tier 2 跨 LLM 复核（Codex） → Tier 3 规则核对兜底（例如检查 header 中声明的导出或依赖是否能在源码中匹配到）
 
 ---
 

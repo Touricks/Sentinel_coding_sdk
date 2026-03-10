@@ -111,7 +111,7 @@ Three pillars:
 
 1. **Document lifecycle**: `/start` bootstraps → chain-trigger auto-syncs → `/progress` logs discoveries → compaction promotes to `CLAUDE.md`
 2. **Tool routing**: `/routing` inventories tools → human approves → `/boundary` generates declarations → auto-loaded every session
-3. **Three-tier review**: Tier 1 deterministic prechecks → Tier 2 cross-LLM review (Codex) → Tier 3 self-review fallback
+3. **Three-tier review**: Tier 1 deterministic prechecks → Tier 2 cross-LLM verification (Codex) → Tier 3 rule-based fallback check (e.g., matching declared exports or dependencies in the header against the source code)
 
 ---
 
